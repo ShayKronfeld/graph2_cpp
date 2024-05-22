@@ -25,14 +25,34 @@ Graph operator-() const: Returns a graph with all edge weights negated.
 Binary Operators:
 Graph operator+(const Graph& other): Adds two graphs.
 Graph operator-(const Graph& other): Subtracts one graph from another.
-Graph operator*(const Graph& other): Multiplies two graphs using matrix multiplication.
-Compound Assignment Operators:
+Graph operator*(const Graph& other): Multiplies two graphs using matrix multiplication. The diagonal will remain 0.
 
+Compound Assignment Operators:
 Graph& operator+=(const Graph& other): Adds another graph to the current graph.
 Graph& operator-=(const Graph& other): Subtracts another graph from the current graph.
 void operator*=(int scalar): Multiplies the graph's edges by a scalar.
 Graph& operator/=(int scalar): Divides the graph's edges by a scalar (throws an exception if the scalar is zero).
-Increment/Decrement Operators:
 
+Increment/Decrement Operators:
 Graph& operator++(): Increments all edge weights by 1 (except the diagonal).
 Graph& operator--(): Decrements all edge weights by 1.
+
+Comparison Operators:
+bool operator==(const Graph& other) const: Checks if two graphs are equal.
+bool operator!=(const Graph& other) const: Checks if two graphs are not equal.
+bool operator<(const Graph& other) const: Checks if the current graph is less than another graph, based on the following rules: 
+If the graphs have the same number of vertices Check if both graphs have the same edges.
+If they do, compare the weights of the edges. The graph with smaller edge weights is considered smaller.
+If not, the graph with fewer edges is considered smaller.
+If the graphs have different numbers of vertices, the graph with fewer vertices is considered smaller.
+bool operator>(const Graph& other) const: Checks if the current graph is greater than another graph, based on the same rules, but in reverse:
+If the graphs have the same number of vertices:
+Check if both graphs have the same edges.
+If they do, compare the weights of the edges. The graph with larger edge weights is considered greater.
+If not, the graph with more edges is considered greater.
+If the graphs have different numbers of vertices, the graph with more vertices is considered greater.
+bool operator<=(const Graph& other) const: Checks if the current graph is less than or equal to another graph.
+bool operator>=(const Graph& other) const: Checks if the current graph is greater than or equal to another graph.
+
+Output Operator
+friend ostream& operator<<(ostream& os, const Graph& graph): By using this operator, you can display the adjacency matrix representation of a graph.
