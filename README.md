@@ -47,16 +47,16 @@ Comparison Operators:
 bool operator==(const Graph& other) const: Checks if two graphs are equal.
 bool operator!=(const Graph& other) const: Checks if two graphs are not equal.
 bool operator<(const Graph& other) const: Checks if the current graph is less than another graph, based on the following rules: 
-If the graphs have the same number of vertices Check if both graphs have the same edges.
-If they do, compare the weights of the edges. The graph with smaller edge weights is considered smaller.
-If not, the graph with fewer edges is considered smaller.
-If the graphs have different numbers of vertices, the graph with fewer vertices is considered smaller.
+-If the graphs have the same number of vertices Check if both graphs have the same edges.
+-If they do, compare the weights of the edges. The graph with smaller edge weights is considered smaller.
+-If not, the graph with fewer edges is considered smaller.
+-If the graphs have different numbers of vertices, the graph with fewer vertices is considered smaller.
 bool operator>(const Graph& other) const: Checks if the current graph is greater than another graph, based on the same rules, but in reverse:
-If the graphs have the same number of vertices:
-Check if both graphs have the same edges.
-If they do, compare the weights of the edges. The graph with larger edge weights is considered greater.
-If not, the graph with more edges is considered greater.
-If the graphs have different numbers of vertices, the graph with more vertices is considered greater.
+-If the graphs have the same number of vertices:
+-Check if both graphs have the same edges.
+-If they do, compare the weights of the edges. The graph with larger edge weights is considered greater.
+-If not, the graph with more edges is considered greater.
+-If the graphs have different numbers of vertices, the graph with more vertices is considered greater.
 bool operator<=(const Graph& other) const: Checks if the current graph is less than or equal to another graph.
 bool operator>=(const Graph& other) const: Checks if the current graph is greater than or equal to another graph.
 
