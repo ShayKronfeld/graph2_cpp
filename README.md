@@ -65,13 +65,12 @@ This library provides an implementation of a Graph class in C++. The graph is re
 
  ## Method Implementations- Algorithms
  
-- Bellman-Ford Algorithm: Finds the shortest paths from a single source vertex to all other vertices in a weighted graph. Handles negative edge weights and detects negative cycles.
-- Depth-First Search (DFS): Traverses a graph depth-first, visiting all reachable vertices from a given source vertex.
-- Connected Components Detection: Determines if a graph is connected by checking if all vertices are reachable from each other.
-- Negative Cycle Detection: Detects the presence of negative cycles in a graph.
-- Shortest Path Finding: Finds the shortest path between two vertices in a graph.
-- Bipartite Graph Detection: Determines if a given graph is bipartite or not.
-
+- Bellman-Ford Algorithm: This function finds the shortest paths from a single source vertex to all other vertices in a weighted graph and handles negative edge weights and detects negative cycles.
+- isConnected: This function checks if the graph is strongly connected.
+- hasNegativeCycle: This function determines whether the graph contains a negative cycle. 
+- ShortestPath: This function finds the shortest path between two vertices in a graph.
+- isContainsCycle: This function checks if the graph contains a cycle.
+- isBipartite: This function determines if the graph is bipartite.
 
 ## Code Structure
 - Graph.hpp: Declaration of the Graph class, which represents a graph using an adjacency matrix.
