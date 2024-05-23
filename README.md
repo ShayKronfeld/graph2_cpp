@@ -83,6 +83,6 @@ This library provides an implementation of a Graph class in C++. The graph is re
 - The project includes a set of test cases (Test.cpp) to verify the correctness of the implemented algorithms. Run the test suite after building the project to ensure that the algorithms function as expected.
 
 
-  ## Known Limitations
+## Known Limitations
 - The values in the diagonal must be 0.
 - The graph must have a square matrix
