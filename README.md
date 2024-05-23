@@ -79,8 +79,9 @@ This library provides an implementation of a Graph class in C++. The graph is re
 - Algorithms.hpp: Declaration of the Algorithms class, which provides various graph algorithms.
 - Algorithms.cpp: Implementation of the graph algorithms in the Algorithms class.
 
-## Additional Features
-- test.cpp: Tests the algorithms, and also includes edge cases
+## Testing
+- The project includes a set of test cases (Test.cpp) to verify the correctness of the implemented algorithms. Run the test suite after building the project to ensure that the algorithms function as expected.
+
 
   ## Known Limitations
 - The values in the diagonal must be 0. 
