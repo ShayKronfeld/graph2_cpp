@@ -63,7 +63,7 @@ This library provides an implementation of a Graph class in C++. The graph is re
 
 - operator<<(ostream& os, Graph& graph): By using this operator, you can display the adjacency matrix representation of a graph.
 
- ## Method Implementations- Algorithmד
+ ## Method Implementations- Algorithms
  
 - Bellman-Ford Algorithm: Finds the shortest paths from a single source vertex to all other vertices in a weighted graph. Handles negative edge weights and detects negative cycles.
 - Depth-First Search (DFS): Traverses a graph depth-first, visiting all reachable vertices from a given source vertex.
@@ -78,3 +78,6 @@ This library provides an implementation of a Graph class in C++. The graph is re
 - Graph.cpp: Implementation of the Graph class methods.
 - Algorithms.hpp: Declaration of the Algorithms class, which provides various graph algorithms.
 - Algorithms.cpp: Implementation of the graph algorithms in the Algorithms class.
+
+  ## Known Limitations
+- The values in the diagonal must be 0. 
