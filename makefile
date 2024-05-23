@@ -1,3 +1,7 @@
+## NAME: shay kronfeld
+## ID: 322234782
+## EMAIL: kronfeldshay@gmail.com
+
 CXX=clang++
 CXXFLAGS=-std=c++11
 VALGRIND_FLAGS=-v --leak-check=full --show-leak-kinds=all  --error-exitcode=99
