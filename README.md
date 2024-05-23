@@ -21,50 +21,56 @@ This library provides an implementation of a Graph class in C++. The graph is re
 
 **Unary Operators:**
 
-- Graph operator+() const: Returns a copy of the graph (no changes).
-- Graph operator-() const: Returns a graph with all edge weights negated.
+- operator+: Returns a copy of the graph (no changes).
+- operator-: Returns a graph with all edge weights negated.
 
 **Binary Operators:**
 
-- Graph operator+(const Graph& other): Adds two graphs.
-- Graph operator-(const Graph& other): Subtracts one graph from another.
-- Graph operator*(const Graph& other):
-Multiplies two graphs using matrix multiplication. The diagonal will remain 0.
+- operator+(Graph& other): Adds two graphs.
+- operator-(Graph& other): Subtracts one graph from another.
+- operator*(Graph& other): Multiplies two graphs using matrix multiplication. The diagonal will remain 0.
 
 **Compound Assignment Operators:**
 
-- Graph& operator+=(const Graph& other): Adds another graph to the current graph.
-- Graph& operator-=(const Graph& other): Subtracts another graph from the current graph.
-- void operator*=(int scalar): Multiplies the graph's edges by a scalar.
-- Graph& operator/=(int scalar): Divides the graph's edges by a scalar (throws an exception if the scalar is zero).
+- operator+=(Graph& other): Adds another graph to the current graph.
+- operator-=(Graph& other): Subtracts another graph from the current graph.
+- operator*=(int scalar): Multiplies the graph's edges by a scalar.
+- operator/=(int scalar): Divides the graph's edges by a scalar (throws an exception if the scalar is zero).
 
 **Increment/Decrement Operators:**
 
-- Graph& operator++(): Increments all edge weights by 1 (except the diagonal).
-- Graph& operator--(): Decrements all edge weights by 1.
+- operator++: Increments all edge weights by 1 (except the diagonal).
+- operator--: Decrements all edge weights by 1.
 
 **Comparison Operators:**
 
-- bool operator==(const Graph& other) const: Checks if two graphs are equal.
-- bool operator!=(const Graph& other) const: Checks if two graphs are not equal.
-- bool operator<(const Graph& other) const: Checks if the current graph is less than another graph, based on the following rules:
+- operator==(Graph& other) const: Checks if two graphs are equal.
+- operator!=(Graph& other) const: Checks if two graphs are not equal.
+- operator<(Graph& other) const: Checks if the current graph is less than another graph, based on the following rules:
   - If the graphs have the same number of vertices, check if both graphs have the same edges.
   - If they do, compare the weights of the edges. The graph with smaller edge weights is considered smaller.
   - If not, the graph with fewer edges is considered smaller.
   - If the graphs have different numbers of vertices, the graph with fewer vertices is considered smaller.
-- bool operator>(const Graph& other) const: Checks if the current graph is greater than another graph, based on the same rules, but in reverse:
+- operator>(Graph& other) const: Checks if the current graph is greater than another graph, based on the same rules, but in reverse:
   - If the graphs have the same number of vertices, check if both graphs have the same edges.
   - If they do, compare the weights of the edges. The graph with larger edge weights is considered greater.
   - If not, the graph with more edges is considered greater.
   - If the graphs have different numbers of vertices, the graph with more vertices is considered greater.
-- bool operator<=(const Graph& other) const: Checks if the current graph is less than or equal to another graph.
-- bool operator>=(const Graph& other) const: Checks if the current graph is greater than or equal to another graph.
+- operator<=(Graph& other) const: Checks if the current graph is less than or equal to another graph.
+- operator>=(Graph& other) const: Checks if the current graph is greater than or equal to another graph.
 
 **Output Operator:**
 
-- friend ostream& operator<<(ostream& os, const Graph& graph): By using this operator, you can display the adjacency matrix representation of a graph.
+- operator<<(ostream& os, Graph& graph): By using this operator, you can display the adjacency matrix representation of a graph.
 
-
+ ## Method Implementations- Algorithmד
+ 
+    • Bellman-Ford Algorithm: Finds the shortest paths from a single source vertex to all other vertices in a weighted graph. Handles negative edge weights and detects negative cycles.
+    • Depth-First Search (DFS): Traverses a graph depth-first, visiting all reachable vertices from a given source vertex.
+    • Connected Components Detection: Determines if a graph is connected by checking if all vertices are reachable from each other.
+    • Negative Cycle Detection: Detects the presence of negative cycles in a graph.
+    • Shortest Path Finding: Finds the shortest path between two vertices in a graph.
+    • Bipartite Graph Detection: Determines if a given graph is bipartite or not.
 
 
 ## Code Structure
