@@ -84,4 +84,5 @@ This library provides an implementation of a Graph class in C++. The graph is re
 
 
   ## Known Limitations
-- The values in the diagonal must be 0. 
+- The values in the diagonal must be 0.
+- The graph must have a square matrix
