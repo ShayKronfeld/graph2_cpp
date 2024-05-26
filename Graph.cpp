@@ -29,10 +29,10 @@ namespace ariel {
 
     // If the matrices are not the same size
     for (const auto& row : matrix) { 
-                if (row.size() != matrix.size()) {
-                    throw invalid_argument("Invalid graph: The graph is not a square matrix");
-                }
+        if (row.size() != matrix.size()) {
+            throw invalid_argument("Invalid graph: The graph is not a square matrix");
         }
+    }
 
     for (int i=0; i<matrix.size(); i++){
         if (matrix[i][i]!=0){
@@ -200,6 +200,10 @@ namespace ariel {
             }
         }
 
+        // if g1<g2 or g2<g1 they not equals
+        if (this->getAdjMatrix() < other.getAdjMatrix() || other.getAdjMatrix() < this->getAdjMatrix())
+            return false;
+
         return true; // Graphs are equal
     }
 
@@ -212,78 +216,60 @@ namespace ariel {
 
     //check if the original graph < other graph
     bool Graph::operator<(const Graph& other) const {
-    bool flag=true;
+    
+        // if the matrixs not in the same size
+        if (numberOfVertices != other.numberOfVertices){
 
-        // if the matrixs in the same size
-        if (numberOfVertices == other.numberOfVertices){
-            for (size_t i = 0; i < numberOfVertices; ++i) {
-                for (size_t j = 0; j < numberOfVertices; ++j) {
-                    if (adjacencyMatrix[i][j] != 0 && other.adjacencyMatrix[i][j] == 0 || adjacencyMatrix[i][j] == 0 && other.adjacencyMatrix[i][j] != 0 ) {
-                        flag=false;
-                        break; // Found an edge that not present both of the matrix 
+            // if the new graph (other) has more edges
+            if (numberOfEdge < other.numberOfEdge) {
+                return true; // original graph has less or equal edges.
+            }
+
+            // if the new graph (other) has more vertices
+            if (numberOfVertices < other.numberOfVertices){
+                return true; // original graph has less or equal vertices.
+            }
+        } else {
+            for (int i=0; i<numberOfVertices; i++){
+                for (int j=0; j<numberOfVertices; j++){
+                    if (adjacencyMatrix[i][j] != 0 && other.adjacencyMatrix[i][j] == 0) {
+                        return false;
                     }
                 }
             }
-
-            if (flag){
-                for (size_t i = 0; i < numberOfVertices; ++i) {
-                    for (size_t j = 0; j < numberOfVertices; ++j) {
-                        if (adjacencyMatrix[i][j] > other.adjacencyMatrix[i][j])
-                            return false;
-                    }           
-                }
-                
-                return true;
-            }  
-
+            return true; 
         }
 
-         
+        return false; 
 
-        // if the new graph (other) has fewer edges
-        if (numberOfEdge > other.numberOfEdge) {
-            return false; // Current graph has more or equal edges.
-        }
-
-        //if numberOfVertices of the new graph (other) is higher
-        return numberOfVertices < other.numberOfVertices;
     }
 
     //check if the original graph > other graph
     bool Graph::operator>(const Graph& other) const {
-        bool flag=true;
+       // if the matrixs not in the same size
+        if (numberOfVertices != other.numberOfVertices){
 
-        // if the matrixs in the same size
-        if (numberOfVertices == other.numberOfVertices){
-            for (size_t i = 0; i < numberOfVertices; ++i) {
-                for (size_t j = 0; j < numberOfVertices; ++j) {
-                    if (adjacencyMatrix[i][j] != 0 && other.adjacencyMatrix[i][j] == 0 || adjacencyMatrix[i][j] == 0 && other.adjacencyMatrix[i][j] != 0 ) {
-                        flag=false;
-                        break; // Found an edge that not present both of the matrix 
+            // if the new graph (other) has more edges
+            if (numberOfEdge > other.numberOfEdge) {
+                return true; // original graph has less or equal edges.
+            }
+
+            // if the new graph (other) has more vertices
+            if (numberOfVertices > other.numberOfVertices){
+                return true; // original graph has less or equal vertices.
+            }
+        } else {
+            for (int i=0; i<numberOfVertices; i++){
+                for (int j=0; j<numberOfVertices; j++){
+                    if (other.adjacencyMatrix[i][j] != 0 && adjacencyMatrix[i][j] == 0) {
+                        return false;
                     }
                 }
             }
-
-            if (flag){
-                for (size_t i = 0; i < numberOfVertices; ++i) {
-                    for (size_t j = 0; j < numberOfVertices; ++j) {
-                        if (adjacencyMatrix[i][j] < other.adjacencyMatrix[i][j])
-                            return false;
-                    }           
-                }
-
-                return true;
-            }   
-        }
-        
-
-        // if the new graph (other) has fewer edges
-        if (numberOfEdge < other.numberOfEdge) {
-            return false; // Current graph has more or equal edges.
+            return true; 
         }
 
-        //if numberOfVertices of the new graph (other) is higher
-        return numberOfVertices > other.numberOfVertices;
+        return false; 
     
     }
 
@@ -301,30 +287,47 @@ namespace ariel {
         return false;  
     }
 
-    // increase all edge weights by 1, except the diagonal
+    // ++g - increase all edge weights by 1
     Graph& Graph::operator++() {
         for (size_t i = 0; i < adjacencyMatrix.size(); ++i) {
             for (size_t j = 0; j < adjacencyMatrix[i].size(); ++j) {
-                if (i != j) {
+                if (adjacencyMatrix[i][j] != 0) {
                     adjacencyMatrix[i][j]++;
                 }
             }
         }
-        return *this;
+        return *this; // return the value before the increase
     }
 
 
-    //decrease all edge weights by 1
+    // --g - decrease all edge weights by 1
     Graph& Graph::operator--() {
          for (size_t i = 0; i < adjacencyMatrix.size(); ++i) {
             for (size_t j = 0; j < adjacencyMatrix[i].size(); ++j) {
-                if (i != j) {
+                if (adjacencyMatrix[i][j] != 0) {
                     adjacencyMatrix[i][j]--;
                 }
             }
         }
-        return *this;
+        return *this; // return the value after the decrease
     }
+
+
+    // g++ - increase all edge weights by 1 (post-decrement)
+    Graph Graph::operator++(int) {
+        Graph temp (*this);
+        ++(*this);
+        return temp; // return the value before the increase
+    }
+
+
+    // g-- - decrease all edge weights by 1 (post-decrement)
+    Graph Graph::operator--(int) {
+        Graph temp (*this);
+        --(*this);
+        return temp; // return the value before the decrease
+    }
+
     
     // multy graph in scalar
    void Graph::operator*=(int scalar) {
@@ -385,10 +388,11 @@ namespace ariel {
             for (int weight : row) {
                 os << weight << "\t"; // Print edge weights
             }
-            os << endl;
+            os << "\n"; // Correctly add newline character
         }
         return os; // Return the output stream
     }
+
 
 
 

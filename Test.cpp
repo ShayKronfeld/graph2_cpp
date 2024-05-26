@@ -339,19 +339,32 @@ TEST_CASE("check ex1+ex2")
     }
 
 
-    string expectedOutput2 = "0\t0\t4\t\n6\t0\t2\t\n4\t5\t0\t\n";
+    string expectedOutput2 = "0\t0\t0\t\n6\t0\t0\t\n0\t5\t0\t\n";
     stringstream ss2;
     ss2 << sub;
     CHECK_EQ(ss2.str(), expectedOutput2);
-    CHECK(ariel::Algorithms::shortestPath(sub, 0, 2) == "0->2");
+    CHECK(ariel::Algorithms::shortestPath(sub, 2, 1) == "2->1");
 
-    // ariel::Graph originalGraph = g++;
-    // originalGraph.loadGraph(g++);
+    ariel::Graph g5;
+    vector<vector<int>> graph5 = {
+        {0, -1, 1, 1},
+        {-1, 0, -1, 1},
+        {-1, 1, 0, -1},
+        {-1, -1, -1, 0}};
 
-    // string expectedOutput3 = "5\t1\t5\t\n7\t5\t3\t\n5\t6\t5\t\n";
-    // stringstream ss3;
-    // ss3 << originalGraph;
-    // CHECK_EQ(ss3.str(), expectedOutput3);
+    g5.loadGraph(graph5);
+    ariel::Graph postPlus = g5++;
+;
+
+    string expectedOutput3 = "0\t-1\t1\t1\t\n-1\t0\t-1\t1\t\n-1\t1\t0\t-1\t\n-1\t-1\t-1\t0\t\n";
+    stringstream ss3;
+    ss3 << postPlus;
+    CHECK_EQ(ss3.str(), expectedOutput3);
+
+    string expectedOutput4 = "0\t0\t2\t2\t\n0\t0\t0\t2\t\n0\t2\t0\t0\t\n0\t0\t0\t0\t\n";
+    stringstream ss4;
+    ss4 << g5;
+    CHECK_EQ(ss4.str(), expectedOutput4);
 }
 
 

@@ -61,6 +61,10 @@ namespace ariel {
 
         Graph& operator--();
 
+        Graph operator++(int);
+
+        Graph operator--(int);
+
         // multy graph in scalar
         void operator*=(int scalar);
 
