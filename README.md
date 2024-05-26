@@ -39,23 +39,25 @@ This library provides an implementation of a Graph class in C++. The graph is re
 
 **Increment/Decrement Operators:**
 
-- operator++: Increments all edge weights by 1 (except the diagonal).
-- operator--: Decrements all edge weights by 1.
+- operator++: Increments all edge weights by 1. (pre-increment)
+- operator--: Decrements all edge weights by 1. (pre-decrement)
+- operator++(int): Increments all edge weights by 1. (post-increment)
+- operator--(int): Decrements all edge weights by 1. (post-decrement)
 
 **Comparison Operators:**
 
 - operator==(Graph& other) const: Checks if two graphs are equal.
 - operator!=(Graph& other) const: Checks if two graphs are not equal.
 - operator<(Graph& other) const: Checks if the current graph is less than another graph, based on the following rules:
-  - If the graphs have the same number of vertices, check if both graphs have the same edges.
-  - If they do, compare the weights of the edges. The graph with smaller edge weights is considered smaller.
-  - If not, the graph with fewer edges is considered smaller.
-  - If the graphs have different numbers of vertices, the graph with fewer vertices is considered smaller.
+  - check if the other graph is contained directly in the original graph.
+  - If neither graph is exactly contained in the other and the graphs are not equal then other graph is greater than original graph,
+    - If the number of edges in other graph is greater than the number of edges in original graph.
+    - If nevertheless the number of edges is the same, then the graph other is larger than the original graph if the representative matrix of other graph has a higher order of magnitude than original graph.
 - operator>(Graph& other) const: Checks if the current graph is greater than another graph, based on the same rules, but in reverse:
-  - If the graphs have the same number of vertices, check if both graphs have the same edges.
-  - If they do, compare the weights of the edges. The graph with larger edge weights is considered greater.
-  - If not, the graph with more edges is considered greater.
-  - If the graphs have different numbers of vertices, the graph with more vertices is considered greater.
+ - check if the original graph is contained directly in the other graph.
+  - If neither graph is exactly contained in the other and the graphs are not equal then original graph is greater than other graph,
+    - If the number of edges in original graph is greater than the number of edges in other graph.
+    - If nevertheless the number of edges is the same, then the original graph is larger than the other graph if the representative matrix of original graph has a higher order of magnitude than other graph.
 - operator<=(Graph& other) const: Checks if the current graph is less than or equal to another graph.
 - operator>=(Graph& other) const: Checks if the current graph is greater than or equal to another graph.
 
