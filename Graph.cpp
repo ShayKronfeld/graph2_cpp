@@ -222,13 +222,16 @@ namespace ariel {
 
             // if the new graph (other) has more edges
             if (numberOfEdge < other.numberOfEdge) {
-                return true; // original graph has less or equal edges.
+                return true; // original graph has less edges.
             }
 
             // if the new graph (other) has more vertices
-            if (numberOfVertices < other.numberOfVertices){
-                return true; // original graph has less or equal vertices.
+            if (numberOfEdge == other.numberOfEdge){
+                if (numberOfVertices < other.numberOfVertices){
+                 return true; // original graph has less vertices.
+                }
             }
+            
         } else {
             for (int i=0; i<numberOfVertices; i++){
                 for (int j=0; j<numberOfVertices; j++){
@@ -255,9 +258,12 @@ namespace ariel {
             }
 
             // if the new graph (other) has more vertices
-            if (numberOfVertices > other.numberOfVertices){
-                return true; // original graph has less or equal vertices.
+            if (numberOfEdge == other.numberOfEdge){
+                if (numberOfVertices > other.numberOfVertices){
+                    return true; // original graph has less or equal vertices.
+                }
             }
+            
         } else {
             for (int i=0; i<numberOfVertices; i++){
                 for (int j=0; j<numberOfVertices; j++){
